@@ -29,17 +29,24 @@ namespace ACViewer
 
         public ACE.Diag.Entity.Player GetPlayer()
         {
-            if (Game.Client == null || GameState == null || GameState.WorldObjects == null)
-                return null;
-
-            var player = GameState.WorldObjects.Values.FirstOrDefault(wo => wo is ACE.Diag.Entity.Player);
-
-            if (player == null)
+            try
             {
-                Console.WriteLine("No player found");
+                if (Game.Client == null || GameState == null || GameState.WorldObjects == null)
+                    return null;
+
+                var player = GameState.WorldObjects.Values.FirstOrDefault(wo => wo is ACE.Diag.Entity.Player);
+
+                if (player == null)
+                {
+                    Console.WriteLine("No player found");
+                    return null;
+                }
+                return player as ACE.Diag.Entity.Player;
+            }
+            catch (Exception)
+            {
                 return null;
             }
-            return player as ACE.Diag.Entity.Player;
         }
 
         public List<WorldObject> GetCreatures()
@@ -58,6 +65,26 @@ namespace ACViewer
                 }
                 return creatures;
 
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<WorldObject> GetMissiles()
+        {
+            try
+            {
+                if (Game.Client == null || GameState == null || GameState.WorldObjects == null)
+                    return null;
+
+                var missiles = GameState.WorldObjects.Values.Where(wo => wo.Missile != null && wo.Missile.Value).ToList();
+
+                if (missiles == null || missiles.Count == 0)
+                    return null;
+
+                return missiles;
             }
             catch (Exception)
             {

@@ -76,7 +76,6 @@
     <Compile Include="Data\Scenery.cs" />
     <Compile Include="Extensions\QuaternionExtensions.cs" />
     <Compile Include="Extensions\Vector3Extensions.cs" />
-    <Compile Include="Game1.cs" />
     <Compile Include="Model\BoundingBox.cs" />
     <Compile Include="Model\Line2.cs" />
     <Compile Include="Model\Mesh.cs" />

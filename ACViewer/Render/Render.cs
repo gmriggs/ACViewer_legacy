@@ -46,6 +46,7 @@ namespace ACViewer.Render
 
             DrawPlayer();
             DrawMonsters();
+            DrawProjectiles();
         }
 
 
@@ -127,5 +128,16 @@ namespace ACViewer.Render
                 monster.Draw(Matrix.Identity, Camera.ViewMatrix, Camera.ProjectionMatrix, Color.Red);
             }
         }
+
+        public void DrawProjectiles()
+        {
+            if (Setup.Projectiles == null) return;
+
+            foreach (var proj in Setup.Projectiles)
+            {
+                proj.Draw(Matrix.Identity, Camera.ViewMatrix, Camera.ProjectionMatrix, Color.Green);
+            }
+        }
+
     }
 }

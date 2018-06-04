@@ -95,6 +95,7 @@ namespace ACViewer
             {
                 Render.Setup.BuildPlayer();
                 Render.Setup.BuildCreatures();
+                Render.Setup.BuildProjectiles();
             }
 
             Render.Camera.Update(gameTime);

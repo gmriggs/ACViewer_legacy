@@ -41,6 +41,7 @@ namespace ACViewer.Render
 
         public SpherePrimitive Player;
         public List<SpherePrimitive> Monsters;
+        public List<SpherePrimitive> Projectiles;
 
         public GraphicsDevice GraphicsDevice { get => ACViewer.Instance.GraphicsDevice; }
 
@@ -301,7 +302,7 @@ namespace ACViewer.Render
             var player = ACViewer.Instance.Player.GetPlayer();
             if (player == null) return false;
 
-            var radius = 0.5f;
+            var radius = player.Radius;
             var pos = player.Location.Pos.ToXna();
             pos.Z += radius;
 
@@ -333,14 +334,34 @@ namespace ACViewer.Render
             if (creatures == null)
                 return;
 
-            var radius = 0.5f;
             foreach (var creature in creatures)
             {
+                var radius = creature.Radius;
                 var pos = creature.Location.Pos.ToXna();
                 pos.Z += radius;
 
                 var monster = new SpherePrimitive(GraphicsDevice, radius * 2.0f, 10, pos);
                 Monsters.Add(monster);
+            }
+        }
+
+        public void BuildProjectiles()
+        {
+            var projs = ACViewer.Instance.Player.GetMissiles();
+
+            Projectiles = new List<SpherePrimitive>();
+
+            if (projs == null)
+                return;
+
+            foreach (var proj in projs)
+            {
+                var radius = proj.Radius;
+                var pos = proj.Location.Pos.ToXna();
+                pos.Z += radius;
+
+                var p = new SpherePrimitive(GraphicsDevice, radius * 2.0f, 10, pos);
+                Projectiles.Add(p);
             }
         }
 

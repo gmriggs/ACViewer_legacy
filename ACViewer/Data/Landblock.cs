@@ -75,13 +75,13 @@ namespace ACViewer
 
         public Scenery Scenery;
 
-        //public static uint DefaultLandblock = 0x7D64FFFF;     // yaraq
+        public static uint DefaultLandblock = 0x7D64FFFF;     // yaraq
         //public static uint DefaultLandblock = 0x7C63FFFF;     // yaraq - 1
         //public static uint DefaultLandblock = 0x7D68FFFF;   // north yaraq
         //public static uint DefaultLandblock = 0x8064FFFF;
         //public static uint DefaultLandblock = 0x7E64FFFF;   // like a rock
         //public static uint DefaultLandblock = 0x7D63FFFF;
-        public static uint DefaultLandblock = 0x7C65FFFF;   // orchard w/ missing trees
+        //public static uint DefaultLandblock = 0x7C65FFFF;   // orchard w/ missing trees
         //public static uint DefaultLandblock = 0x7B63FFFF;   // yaraq beach
         //public static uint DefaultLandblock = 0xE63EFFFF;   // nanto scenery
         //public static uint DefaultLandblock = 0xA9B3FFFF;   // holtburg
@@ -148,9 +148,10 @@ namespace ACViewer
             LandblockInfo = DatManager.CellDat.ReadFromDat<LandblockInfo>(ID - 1);
 
             LoadObjects(LandblockInfo);
-            LoadBuildings(LandblockInfo);
+            //LoadBuildings(LandblockInfo);
+            Buildings = new List<ModelInstance>();
             //LoadWeenies();
-            Scenery = new Scenery(this);
+            //Scenery = new Scenery(this);
         }
 
         /// <summary>
